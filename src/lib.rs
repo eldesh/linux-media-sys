@@ -57,5 +57,15 @@ pub const MEDIA_REQUEST_IOC_REINIT: libc::c_ulong = _IO(b'|', 0x81);
 /// struct media_device_info.
 ///
 pub const fn MEDIA_V2_ENTITY_HAS_FLAGS(media_version: u64) -> bool {
-    return (media_version) >= ((4u64 << 16) | (19u64 << 8) | 0u64);
+    return media_version >= ((4u64 << 16) | (19u64 << 8) | 0u64);
+}
+
+///
+/// Appeared in 4.19.0.
+///
+/// The media_version argument comes from the media_version field in
+/// struct media_device_info.
+///
+pub const fn MEDIA_V2_PAD_HAS_INDEX(media_version: u64) -> bool {
+	return media_version >= ((4u64 << 16) | (19u64 << 8) | 0u64);
 }
