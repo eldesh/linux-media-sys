@@ -1,7 +1,8 @@
 [package]
 name = "linux-media-sys"
 version = "0.3.0"
-edition = "2024"
+edition = "2021"
+rust_version = "1.65.0"
 authors = ["eldesh <nephits@gmail.com>"]
 description = "A Rust library providing access to the Linux Media Subsystem."
 license = "MIT"
@@ -12,5 +13,5 @@ repository = "https://github.com/eldesh/linux-media-sys"
 libc = "0.2.170"
 
 [build-dependencies]
-bindgen = "0.71.0"
+bindgen = "0.66.0"
 
