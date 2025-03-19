@@ -12,7 +12,7 @@ include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 const fn _IOC(
     dir: libc::c_ulong,
-    r#type: libc::c_char,
+    r#type: libc::c_uchar,
     nr: libc::c_ulong,
     size: libc::size_t,
 ) -> libc::c_ulong {
@@ -22,16 +22,29 @@ const fn _IOC(
         | ((size as libc::c_ulong) << _IOC_SIZESHIFT)
 }
 
-const fn _IO(type_: libc::c_char, nr: libc::c_ulong) -> libc::c_ulong {
+const fn _IO(type_: libc::c_uchar, nr: libc::c_ulong) -> libc::c_ulong {
     _IOC(_IOC_NONE as libc::c_ulong, type_, nr, 0)
 }
-const fn _IOR(type_: libc::c_char, nr: libc::c_ulong, size: libc::size_t) -> libc::c_ulong {
+const fn _IOR(
+    type_: ::std::os::raw::c_uchar,
+    nr: libc::c_ulong,
+    size: libc::size_t,
+) -> libc::c_ulong {
     _IOC(_IOC_READ as libc::c_ulong, type_, nr, size)
 }
-const fn _IOW(type_: libc::c_char, nr: libc::c_ulong, size: libc::size_t) -> libc::c_ulong {
+const fn _IOW(
+    type_: ::std::os::raw::c_uchar,
+    _: libc::c_char,
+    nr: libc::c_ulong,
+    size: libc::size_t,
+) -> libc::c_ulong {
     _IOC(_IOC_WRITE as libc::c_ulong, type_, nr, size)
 }
-const fn _IOWR(type_: libc::c_char, nr: libc::c_ulong, size: libc::size_t) -> libc::c_ulong {
+const fn _IOWR(
+    type_: ::std::os::raw::c_uchar,
+    nr: libc::c_ulong,
+    size: libc::size_t,
+) -> libc::c_ulong {
     _IOC((_IOC_READ | _IOC_WRITE) as libc::c_ulong, type_, nr, size)
 }
 
@@ -67,5 +80,5 @@ pub const fn MEDIA_V2_ENTITY_HAS_FLAGS(media_version: u64) -> bool {
 /// struct media_device_info.
 ///
 pub const fn MEDIA_V2_PAD_HAS_INDEX(media_version: u64) -> bool {
-	return media_version >= ((4u64 << 16) | (19u64 << 8) | 0u64);
+    return media_version >= ((4u64 << 16) | (19u64 << 8) | 0u64);
 }
