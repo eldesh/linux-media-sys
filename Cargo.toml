@@ -1,6 +1,6 @@
 [package]
 name = "linux-media-sys"
-version = "0.3.0"
+version = "0.4.0"
 edition = "2021"
 rust_version = "1.65.0"
 authors = ["eldesh <nephits@gmail.com>"]
