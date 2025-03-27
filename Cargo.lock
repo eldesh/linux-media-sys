@@ -130,6 +130,7 @@ name = "linux-media-sys"
 version = "0.3.0"
 dependencies = [
  "bindgen",
+ "home",
  "libc",
 ]
 
